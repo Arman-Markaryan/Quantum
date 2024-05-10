@@ -67,10 +67,22 @@ main() {
   cin >> userAnswer;
   transform(userAnswer.begin(), userAnswer.end(), userAnswer.begin(), ::tolower);
 
-  int pin;
-  ifstream inputFile("pin.txt");
-
   cout << endl;
+  if(userAnswer == "yes") {
+    cout << "Would you like to deposit or withdraw funds from Quantum (Deposit/Withdraw): ";
+    cin >> userAnswer;
+    transform(userAnswer.begin(), userAnswer.end(), userAnswer.begin(), ::tolower);
+  } else if (userAnswer == "no") {
+    cout << "Let's restart so you can pick a new card!" << endl;
+    cout << endl;
+    return 1;
+  } else {
+    cout << "Invalid choice please respond with 'yes' or 'no'" << endl;
+    return 1;
+  }
+
+    int pin;
+  ifstream inputFile("pin.txt");
 
   if(inputFile) {
     inputFile >> pin;
@@ -85,6 +97,10 @@ main() {
     outputFile.close();
     cout << "Your pin has been saved successfully! \n ";
   }
+
+  cout << endl;
+
+  cout << endl;
 
   int inputedDigits;
   cout << "Please enter your four digit pin number to access your account: ";
@@ -122,19 +138,6 @@ main() {
     }
 
   cout << endl;
-
-  cout << endl;
-  if(userAnswer == "yes") {
-    cout << "Would you like to deposit or withdraw funds from Quantum (Deposit/Withdraw): ";
-    cin >> userAnswer;
-    transform(userAnswer.begin(), userAnswer.end(), userAnswer.begin(), ::tolower);
-  } else if (userAnswer == "no") {
-    cout << "Let's restart so you can pick a new card!" << endl;
-    return 1;
-  } else {
-    cout << "Invalid choice please respond with 'yes' or 'no'" << endl;
-    return 1;
-  }
 
   cout << endl;
 
